@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Hello World</title>
+</head>
+<script>
+function startTime(){
+    // i created an date object and name it today.
+    var today=new Date();
+    //getting hours min and second.
+    var h =today.getHours();
+    var m =today.getMinutes();
+    var s =today.getSeconds(); 
+    //getting date datas year month and day.
+    //checking min ,sec,month and day in checkTime function if they are smaller than 10 function putting 0 in front of it .
+    h = checkTime(h);
+    m = checkTime(m);
+    s = checkTime(s);
+    
+    // program writing date and time values in html ,
+    
+    document.getElementById("clock").innerHTML= h +' : '+m+' : '+s;
+    //
+    var t =setTimeout(startTime,500);
+    }
+    
+    
+    //cheking value if they are smaller than 10 , the fuction putting zero in front of it .
+    function checkTime(i){
+    if(i<10){i='0'+i}
+    
+    return i;
+    }
+    
+    
+    function getDate(){
+    //creating date object named today
+        var today = new Date();
+    // getting all information year ,month, date . 
+        var years = today.getFullYear();
+        var months = (today.getMonth()+1);
+        var days = today.getDate();
+    //checking data if they are smaller than 10 putting 0 infront of it .
+        months = checkTime(months);
+        days = checkTime(days);
+    // writing in html.
+    document.getElementById('clock2').innerHTML=years+'-'+months+'-'+days;
+    
+    }
+</script>
+
+
+<body onload="startTime(),getDate()" >  <!--the program starting startTime() function first-->
+    <div class="container" style="margin-top: 50px;">
+        <div class="container text-center" align="center" >
+            <h4> WELCOME TO OZAY USLU'S NEWS APP </h4><br>
+            <p align="center">
+              
+                PLEASE CLICK TO BUTTON FOR CONTUNIUE
+            </p><br>
+
+<!-- this button calling  news page . -->
+            <button onclick="location.href = './news.html'" id="myButton" align="center" >NEWS</button>
+        </div>
+<!-- this div shows date and time in index page. -->
+         <div>
+            <a id="clock" class="clock"></a>
+            <p id ="clock2" class="clock" ></p>
+          </div>
+
+</body>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">  </script>
+  
+
+
+</html>
